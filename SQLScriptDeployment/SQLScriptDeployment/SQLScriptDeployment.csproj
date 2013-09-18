@@ -99,12 +99,6 @@
     <Compile Include="Deployment.cs" />
     <Compile Include="DeploymentOperation.cs" />
     <Compile Include="DeploymentResult.cs" />
-    <Compile Include="frmDeploymentResult.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmDeploymentResult.Designer.cs">
-      <DependentUpon>frmDeploymentResult.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,9 +119,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="ProgramOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmDeploymentResult.resx">
-      <DependentUpon>frmDeploymentResult.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
