@@ -203,6 +203,7 @@
             this.Controls.Add(this.lblSonuc);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmServer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Database İşlemleri";
             this.Load += new System.EventHandler(this.frmServer_Load);
             this.ResumeLayout(false);

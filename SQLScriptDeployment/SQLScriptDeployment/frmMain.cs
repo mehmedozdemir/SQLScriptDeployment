@@ -1,15 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.Threading;
 using System.Threading.Tasks;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading;
 
 namespace SQLScriptDeployment
 {
@@ -24,6 +18,17 @@ namespace SQLScriptDeployment
             InitializeComponent();
         }
         private void ServerListesiDoldur()
+        {
+            DoAsync(new ThreadStart(DatabaseListesiDoldur));
+        }
+
+        private void DoAsync(ThreadStart ts)
+        {
+            Thread t = new Thread(ts);
+            t.Start();
+        }
+
+        private void DatabaseListesiDoldur()
         {
             List<Server> serverList = ProgramOperation.ServerOperation.GetServerList();
             cbServerList.Items.Clear();
@@ -45,6 +50,7 @@ namespace SQLScriptDeployment
                 DeploymentResult result = ProgramOperation.DeploymentOperation.DeploymentBaslat(dep);
                 deploymentResultList.Add(result);
             }
+            DeploySonucuGoster();
 
         }
         private void DeploySonucuGoster()
@@ -144,9 +150,7 @@ namespace SQLScriptDeployment
             {
                 if (cbServerList.CheckedItems.Count > 0)
                 {
-                    executeTask = new Task(() => Gonder());
-                    var endTask = executeTask.ContinueWith((t) => DeploySonucuGoster());
-                    executeTask.Start();
+                    DoAsync(new ThreadStart(Gonder));
                 }
                 else
                 {
@@ -158,32 +162,43 @@ namespace SQLScriptDeployment
                 MessageBox.Show(ex.Message);
             }
         }
-        private void btnIptal_Click(object sender, EventArgs e)
-        {
-            if (executeTask != null)
-            {
-                executeTask.Wait();
-            }
-            MessageBox.Show("İşlem iptal edildi.");
-        }
+
         private void btnExport_Click(object sender, EventArgs e)
+        {
+            Export();
+        }
+
+        private void Export()
         {
             try
             {
-                List<Server> seciliServerList = GetSelectedServerList();
-                bool result = ProgramOperation.ServerOperation.Export(seciliServerList);
-                if (result)
+                SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.Title = "Database Listesini Dışa Aktar";
+                saveDialog.Filter = "SSD Export Format|*.ssd|Tüm Dosyalar|*.*";
+                saveDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                saveDialog.FileName = string.Format("Database_{0}{1}{2}.ssd", DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year);
+                if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    MessageBox.Show("Export işlemi tamamlanmıştır.");
+                    string fileName = saveDialog.FileName;
+                    List<Server> seciliServerList = GetSelectedServerList();
+                    bool result = ProgramOperation.ServerOperation.Export(seciliServerList, fileName);
+                    if (result)
+                    {
+                        MessageBox.Show("Export işlemi tamamlanmıştır.");
+                    }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
         private void btnImport_Click(object sender, EventArgs e)
+        {
+            Import();
+        }
+
+        private void Import()
         {
             try
             {
@@ -198,7 +213,6 @@ namespace SQLScriptDeployment
             {
                 MessageBox.Show("Import sırasında hata meydana geldi.\n" + ex.Message);
             }
-
         }
         private void btnDatabaseDuzenle_Click(object sender, EventArgs e)
         {
@@ -227,14 +241,5 @@ namespace SQLScriptDeployment
             exportToolStripMenuItem.Enabled = cbServerList.CheckedItems.Count > 0;
         }
 
-        private void adaGoreToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void eklemeSirasınaGöreSıralaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

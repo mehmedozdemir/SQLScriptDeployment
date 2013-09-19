@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
             this.cbServerList = new System.Windows.Forms.CheckedListBox();
@@ -63,16 +63,15 @@
             this.txtSQLScript = new System.Windows.Forms.RichTextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.gvResult = new System.Windows.Forms.DataGridView();
+            this.cServer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cMesaj = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.btnExecute = new System.Windows.Forms.ToolStripButton();
-            this.btnIptal = new System.Windows.Forms.ToolStripButton();
             this.btnTemizle = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.cMesaj = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cServer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gvResult = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -86,9 +85,9 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvResult)).BeginInit();
             this.panel4.SuspendLayout();
             this.toolStrip2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gvResult)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -151,8 +150,7 @@
             this.tümünüSeçToolStripMenuItem,
             this.seçimiBırakToolStripMenuItem});
             this.databaseMenu.Name = "databaseMenu";
-            this.databaseMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.databaseMenu.Size = new System.Drawing.Size(130, 198);
+            this.databaseMenu.Size = new System.Drawing.Size(153, 220);
             this.databaseMenu.Opening += new System.ComponentModel.CancelEventHandler(this.databaseMenu_Opening);
             // 
             // ekleToolStripMenuItem
@@ -200,14 +198,12 @@
             this.adaGoreToolStripMenuItem.Name = "adaGoreToolStripMenuItem";
             this.adaGoreToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.adaGoreToolStripMenuItem.Text = "Ada göre sırala";
-            this.adaGoreToolStripMenuItem.Click += new System.EventHandler(this.adaGoreToolStripMenuItem_Click);
             // 
             // eklemeSirasınaGöreSıralaToolStripMenuItem
             // 
             this.eklemeSirasınaGöreSıralaToolStripMenuItem.Name = "eklemeSirasınaGöreSıralaToolStripMenuItem";
             this.eklemeSirasınaGöreSıralaToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.eklemeSirasınaGöreSıralaToolStripMenuItem.Text = "Ekleme sırasına göre sırala";
-            this.eklemeSirasınaGöreSıralaToolStripMenuItem.Click += new System.EventHandler(this.eklemeSirasınaGöreSıralaToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
@@ -274,6 +270,7 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnAddDatabase,
             this.btnDatabaseDuzenle,
@@ -284,7 +281,6 @@
             this.btnTools});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.toolStrip1.Size = new System.Drawing.Size(162, 25);
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
@@ -355,7 +351,7 @@
             // 
             this.btnExport.Image = global::SQLScriptDeployment.Properties.Resources._1379338434_Export;
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(152, 22);
+            this.btnExport.Size = new System.Drawing.Size(106, 22);
             this.btnExport.Text = "Export";
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
@@ -363,7 +359,7 @@
             // 
             this.btnImport.Image = global::SQLScriptDeployment.Properties.Resources._1379338431_Import;
             this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(152, 22);
+            this.btnImport.Size = new System.Drawing.Size(106, 22);
             this.btnImport.Text = "Import";
             this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
@@ -423,6 +419,45 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "SQL";
             // 
+            // gvResult
+            // 
+            this.gvResult.AllowUserToAddRows = false;
+            this.gvResult.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.AliceBlue;
+            this.gvResult.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.gvResult.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.gvResult.BackgroundColor = System.Drawing.Color.White;
+            this.gvResult.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gvResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvResult.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cServer,
+            this.cMesaj});
+            this.gvResult.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gvResult.Location = new System.Drawing.Point(0, 20);
+            this.gvResult.Name = "gvResult";
+            this.gvResult.ReadOnly = true;
+            this.gvResult.RowHeadersVisible = false;
+            this.gvResult.RowTemplate.Height = 20;
+            this.gvResult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gvResult.Size = new System.Drawing.Size(628, 200);
+            this.gvResult.TabIndex = 4;
+            // 
+            // cServer
+            // 
+            this.cServer.DataPropertyName = "ServerName";
+            this.cServer.HeaderText = "Server Name";
+            this.cServer.Name = "cServer";
+            this.cServer.ReadOnly = true;
+            this.cServer.Width = 94;
+            // 
+            // cMesaj
+            // 
+            this.cMesaj.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cMesaj.DataPropertyName = "ResultDescription";
+            this.cMesaj.HeaderText = "Mesaj";
+            this.cMesaj.Name = "cMesaj";
+            this.cMesaj.ReadOnly = true;
+            // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -445,14 +480,13 @@
             // 
             // toolStrip2
             // 
+            this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnExecute,
-            this.btnIptal,
             this.btnTemizle,
             this.toolStripSeparator6});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.toolStrip2.Size = new System.Drawing.Size(628, 25);
             this.toolStrip2.TabIndex = 5;
             this.toolStrip2.Text = "toolStrip2";
@@ -465,16 +499,6 @@
             this.btnExecute.Size = new System.Drawing.Size(66, 22);
             this.btnExecute.Text = "Execute";
             this.btnExecute.Click += new System.EventHandler(this.btnExecute_Click);
-            // 
-            // btnIptal
-            // 
-            this.btnIptal.Image = global::SQLScriptDeployment.Properties.Resources._1379101997_519698_206_CircledStop;
-            this.btnIptal.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnIptal.Name = "btnIptal";
-            this.btnIptal.Size = new System.Drawing.Size(49, 22);
-            this.btnIptal.Text = "İptal";
-            this.btnIptal.Visible = false;
-            this.btnIptal.Click += new System.EventHandler(this.btnIptal_Click);
             // 
             // btnTemizle
             // 
@@ -489,45 +513,6 @@
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             this.toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
-            // 
-            // cMesaj
-            // 
-            this.cMesaj.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cMesaj.DataPropertyName = "ResultDescription";
-            this.cMesaj.HeaderText = "Mesaj";
-            this.cMesaj.Name = "cMesaj";
-            this.cMesaj.ReadOnly = true;
-            // 
-            // cServer
-            // 
-            this.cServer.DataPropertyName = "ServerName";
-            this.cServer.HeaderText = "Server Name";
-            this.cServer.Name = "cServer";
-            this.cServer.ReadOnly = true;
-            this.cServer.Width = 94;
-            // 
-            // gvResult
-            // 
-            this.gvResult.AllowUserToAddRows = false;
-            this.gvResult.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
-            this.gvResult.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.gvResult.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.gvResult.BackgroundColor = System.Drawing.Color.White;
-            this.gvResult.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.gvResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gvResult.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cServer,
-            this.cMesaj});
-            this.gvResult.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gvResult.Location = new System.Drawing.Point(0, 20);
-            this.gvResult.Name = "gvResult";
-            this.gvResult.ReadOnly = true;
-            this.gvResult.RowHeadersVisible = false;
-            this.gvResult.RowTemplate.Height = 20;
-            this.gvResult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gvResult.Size = new System.Drawing.Size(628, 200);
-            this.gvResult.TabIndex = 4;
             // 
             // frmMain
             // 
@@ -556,11 +541,11 @@
             this.splitContainer2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvResult)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gvResult)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -578,7 +563,6 @@
         private System.Windows.Forms.ToolStripButton btnExecute;
         private System.Windows.Forms.ToolStripButton btnTemizle;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ToolStripButton btnIptal;
         private System.Windows.Forms.CheckedListBox cbServerList;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label2;
