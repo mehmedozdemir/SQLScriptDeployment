@@ -12,7 +12,7 @@
     <AssemblyName>SQLScriptDeployment</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
     <StartupObject>
     </StartupObject>
     <FileUpgradeFlags>
@@ -21,19 +21,24 @@
     </UpgradeBackupLocation>
     <OldToolsVersion>3.5</OldToolsVersion>
     <TargetFrameworkProfile />
-    <PublishUrl>C:\Users\mehmet.ozdemir\Desktop\SSD\</PublishUrl>
+    <PublishUrl>http://localhost/</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
+    <UpdateInterval>1</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdatePeriodically>true</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ProductName>SQL Script Deployment</ProductName>
+    <PublisherName>Unipa</PublisherName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>12</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -69,8 +74,12 @@
   <PropertyGroup>
     <SignManifests>true</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>1379698858_103341.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -82,6 +91,7 @@
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Security" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -154,9 +164,17 @@
     <None Include="SQLScriptDeployment_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="1379698070_8902.ico" />
+    <Content Include="1379698858_103341.ico" />
     <Content Include="dbDeploy.sdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\1379704638_42238.ico" />
+    <None Include="Resources\1379699866_42337.ico" />
+    <None Include="Resources\1379699854_83265.ico" />
+    <None Include="Resources\1379699843_85208.ico" />
+    <None Include="Resources\1379699820_71799.ico" />
+    <None Include="Resources\1379698274_59192.ico" />
     <None Include="Resources\1379338434_Export.png" />
     <None Include="Resources\1379338431_Import.png" />
     <None Include="Resources\1379338387_98.png" />
@@ -227,6 +245,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\1379101997_519698-206_CircledStop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <FileAssociation Include=".ssd">
+      <Visible>False</Visible>
+      <Description>SQL Script Deployment Database File</Description>
+      <Progid>ssd</Progid>
+      <DefaultIcon>1379698070_8902.ico</DefaultIcon>
+    </FileAssociation>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

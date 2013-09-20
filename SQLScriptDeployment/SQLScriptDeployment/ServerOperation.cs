@@ -52,25 +52,16 @@ namespace SQLScriptDeployment
             }
         }
 
-        public bool Export(List<Server> seciliServerList)
+        public bool Export(List<Server> seciliServerList, string fileName)
         {
             bool result = false;
             try
             {
-                SaveFileDialog saveDialog = new SaveFileDialog();
-                saveDialog.Title = "Database Listesini Dışa Aktar";
-                saveDialog.Filter = "SSD Export Format|*.ssd|Tüm Dosyalar|(*.*)";
-                saveDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                saveDialog.FileName = string.Format("SSDDatabaseList_{0}_{1}_{2}.ssd", DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year);
-                if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    string fileName = saveDialog.FileName;
-                    fs = new FileStream(fileName, FileMode.Create, FileAccess.Write);
-                    bf = new BinaryFormatter();
-                    bf.Serialize(fs, seciliServerList);
-                    fs.Close();
-                    result = true;
-                }
+                fs = new FileStream(fileName, FileMode.Create, FileAccess.Write);
+                bf = new BinaryFormatter();
+                bf.Serialize(fs, seciliServerList);
+                fs.Close();
+                result = true;
             }
             catch (Exception ex)
             {
@@ -90,7 +81,7 @@ namespace SQLScriptDeployment
             {
                 OpenFileDialog openDialog = new OpenFileDialog();
                 openDialog.Title = "Database Listesini İçe Aktar";
-                openDialog.Filter = "SSD Export Format|*.ssd|Tüm Dosyalar|(*.*)";
+                openDialog.Filter = "SSD Export Format|*.ssd|Tüm Dosyalar|*.*";
                 openDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
                 if (openDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
